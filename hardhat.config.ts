@@ -62,12 +62,64 @@ task("generate-history", "Generates fake historical data for testing")
 // Go to https://hardhat.org/config/ to learn more
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.18",
+  solidity: {
+    compilers: [
+      {
+        version: "0.5.16",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+      {
+        version: "0.6.6",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+      {
+        version: "0.8.17",
+        settings: {
+          viaIR: true,
+          optimizer: {
+            enabled: true,
+            runs: 200,
+            details: {
+              // yul: true
+            },
+          },
+        },
+      },
+      {
+        version: "0.8.18",
+        settings: {
+          viaIR: true,
+          optimizer: {
+            enabled: true,
+            runs: 200,
+            details: {
+              // yul: true
+            },
+          },
+        },
+      },
+    ],
+  },
   namedAccounts: {
     deployer: {
       default: 0,
       mainnet: `privatekey://${process.env.MAINNET_DEPLOYER_PRIVATE_KEY}`,
       goerli: `privatekey://${process.env.GOERLI_DEPLOYER_PRIVATE_KEY}`,
+    },
+    signatory: {
+      default: 1,
+      mainnet: `privatekey://${process.env.MAINNET_SIGNATORY_PRIVATE_KEY}`,
+      goerli: `privatekey://${process.env.GOERLI_SIGNATORY_PRIVATE_KEY}`,
     },
   },
   networks: {
@@ -97,6 +149,49 @@ const config: HardhatUserConfig = {
         count: 25,
       },
     },
+    bttc_testnet: {
+      url: "https://pre-rpc.bt.io",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined
+          ? [process.env.PRIVATE_KEY, process.env.PRIVATE_KEY_2 ?? ""]
+          : [],
+      chainId: 1029,
+      gas: 10000000,
+      timeout: 200000,
+    },
+    bttc: {
+      url: "https://rpc.bt.io",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined
+          ? [process.env.PRIVATE_KEY, process.env.PRIVATE_KEY_2 ?? ""]
+          : [],
+      chainId: 199,
+    },
+    aurora: {
+      url: "https://mainnet.aurora.dev",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined
+          ? [process.env.PRIVATE_KEY, process.env.PRIVATE_KEY_2 ?? ""]
+          : [],
+      chainId: 1313161554,
+    },
+    aurora_t: {
+      url: "https://testnet.aurora.dev",
+      accounts:
+        process.env.PRIVATE_KEY_3 !== undefined
+          ? [process.env.PRIVATE_KEY_3, process.env.PRIVATE_KEY_2 ?? ""]
+          : [],
+      chainId: 1313161555,
+    },
+
+    fantom_t: {
+      url: "https://rpc.ankr.com/fantom_testnet/",
+      accounts:
+        process.env.PRIVATE_KEY_3 !== undefined
+          ? [process.env.PRIVATE_KEY_3, process.env.PRIVATE_KEY_2 ?? ""]
+          : [],
+      chainId: 4002,
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS === "true",
@@ -105,6 +200,9 @@ const config: HardhatUserConfig = {
 
     // Uncomment to override gas price
     // gasPrice: 20,
+  },
+  mocha: {
+    timeout: 400000000,
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,

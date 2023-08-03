@@ -1,10 +1,10 @@
 {
-  "name": "@sarcophagus-org/sarcophagus-v2-contracts",
-  "version": "0.17.2",
+  "name": "@heirtrust/heirtrust-v2-contracts",
+  "version": "0.0.1",
   "engines": {
     "node": ">=16.15.0"
   },
-  "description": "[![Discord](https://img.shields.io/discord/753398645507883099?color=768AD4&label=discord)](https://discord.com/channels/753398645507883099/) [![Twitter](https://img.shields.io/twitter/follow/sarcophagusio?style=social)](https://twitter.com/sarcophagusio)",
+  "description": "[ [![Twitter](https://img.shields.io/twitter/follow/heirtrust?style=social)](https://twitter.com/heirtrust)",
   "scripts": {
     "start": "npx hardhat compile && npx hardhat node",
     "compile": "npx hardhat compile",
@@ -26,24 +26,24 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sarcophagus-org/sarcophagus-v2-contracts.git"
+    "url": "git+https://github.com/heirtrust/heirtrust-v2-contracts.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sarcophagus-org/sarcophagus-v2-contracts/issues"
+    "url": "https://github.com/heirtrust/heirtrust-v2-contracts/issues"
   },
-  "homepage": "https://github.com/sarcophagus-org/sarcophagus-v2-contracts#readme",
+  "homepage": "https://github.com/heirtrust/heirtrust-v2-contracts#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.4",
-    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
+    "@nomiclabs/hardhat-ethers": "2.2.3",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@nomiclabs/hardhat-solhint": "^2.0.1",
     "@openzeppelin/contracts": "^4.6.0",
     "@openzeppelin/hardhat-upgrades": "^1.19.0",
-    "@typechain/ethers-v5": "^7.2.0",
-    "@typechain/hardhat": "^2.3.1",
+    "@typechain/ethers-v5": "^11.1.1",
+    "@typechain/hardhat": "^6.1.6",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
     "@types/node": "^12.20.52",
@@ -61,9 +61,9 @@
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-promise": "^5.2.0",
     "ethers": "^5.7.2",
-    "hardhat": "^2.12.2",
+    "hardhat": "^2.17.1",
     "hardhat-contract-sizer": "^2.5.1",
-    "hardhat-deploy": "^0.11.10",
+    "hardhat-deploy": "^0.11.34",
     "hardhat-gas-reporter": "^1.0.8",
     "husky": "^8.0.2",
     "keyv": "^4.5.0",
@@ -74,7 +74,7 @@
     "solhint": "^3.3.6",
     "solidity-coverage": "^0.7.21",
     "ts-node": "^10.8.0",
-    "typechain": "^5.2.0",
+    "typechain": "^8.3.1",
     "typescript": "^4.7.2"
   },
   "overrides": {

@@ -3,7 +3,7 @@ import { DeployFunction } from "hardhat-deploy/types";
 import time from "../test/utils/time";
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
-  let sarcoTokenAddress: string;
+  let hrtTokenAddress: string;
 
   const { deploy, diamond } = hre.deployments;
   const { deployer } = await hre.getNamedAccounts();
@@ -18,25 +18,25 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     hre.hardhatArguments.network === "localhost" ||
     !hre.hardhatArguments.network
   ) {
-    const sarcoTokenMock = await deploy("SarcoTokenMock", {
+    const hrtTokenMock = await deploy("HeirTrustTokenMock", {
       from: deployer,
       log: true,
     });
-    sarcoTokenAddress = sarcoTokenMock.address;
+    hrtTokenAddress = hrtTokenMock.address;
   } else if (["goerli", "goerli-fork"].includes(hre.hardhatArguments.network)) {
-    sarcoTokenAddress = "0x4633b43990b41B57b3678c6F3Ac35bA75C3D8436";
+    hrtTokenAddress = "0x4633b43990b41B57b3678c6F3Ac35bA75C3D8436";
   } else if (["sepolia"].includes(hre.hardhatArguments.network)) {
-    sarcoTokenAddress = "0xfa1FA4d51FB2babf59e402c83327Ab5087441289";
+    hrtTokenAddress = "0xfa1FA4d51FB2babf59e402c83327Ab5087441289";
   } else if (
     ["mainnet", "mainnet-fork"].includes(hre.hardhatArguments.network)
   ) {
-    sarcoTokenAddress = "0x7697b462a7c4ff5f8b55bdbc2f4076c2af9cf51a";
+    hrtTokenAddress = "0x7697b462a7c4ff5f8b55bdbc2f4076c2af9cf51a";
 
     // Mainnet DAO Agent Address
     daoAgentAddress = "0x2627e4c6beecbcb7ba0a5bb9861ec870dc86eb59";
   } else {
     throw Error(
-      `Sarcophagus is not set up for this network: ${hre.hardhatArguments.network}`
+      `HeirTrust is not set up for this network: ${hre.hardhatArguments.network}`
     );
   }
 
@@ -69,7 +69,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       contract: "AppStorageInit",
       methodName: "init",
       args: [
-        sarcoTokenAddress,
+        hrtTokenAddress,
         daoAgentAddress,
         protocolFeeBasePercentage,
         cursedBondPercentage,

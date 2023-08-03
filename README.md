@@ -1,20 +1,20 @@
-# Sarcophagus Core V2
+# Heirtrust Contracts Core V2
 
-[![Discord](https://img.shields.io/discord/753398645507883099?color=768AD4&label=discord)](https://discord.com/channels/753398645507883099/)
-[![Twitter](https://img.shields.io/twitter/follow/sarcophagusio?style=social)](https://twitter.com/sarcophagusio)
 
-Sarcophagus is a decentralized Dead Man's Switch built on Ethereum and Arweave.
+[![Twitter](https://img.shields.io/twitter/follow/heirtrust?style=social)](https://twitter.com/heirtrust)
+
+HeirTrust is a decentralized Dead Man's Switch built for EVM and Arweave.
 
 ## Overview
 
-This repository contains the smart contracts (and corresponding deployment scripts) that power version 2 of the Sarcophagus system. Version 1 of Sarcophagus can be found here [Sarcophgus V1](https://github.com/sarcophagus-org/sarcophagus-contracts).
+This repository contains the smart contracts (and corresponding deployment scripts) that power the HeirTrust system. 
 
 ## Local Development Guide
 ### Clone the repository and install the dependencies
 
 ```bash
-git clone git@github.com:sarcophagus-org/sarcophagus-v2-contracts.git
-cd sarcophagus-v2-contracts
+git clone git@github.com:heirtrust/heirtrust-v2-contracts.git
+cd heirtrust-v2-contracts
 nvm use
 npm install
 
@@ -46,9 +46,9 @@ npx hardhat console --network goerli
 - Load the smart contracts into the console’s HRE by calling `loadContracts()`
   - the function will retrieve the diamond address from ./deployments/<current network>/Diamond.json
   - you may optionally pass in a diamond address
-- Connect a funded signer so that contract calls are made with an account that can pay gas and SARCO fees
-  - on the `localhost` network you don’t need to do anything because the default signer is already funded with ether and SARCO
-  - on `goerli` you’ll need to connect a signer by supplying the private key for an account that owns goerli ether and goerli SARCO
+- Connect a funded signer so that contract calls are made with an account that can pay gas and HRT fees
+  - on the `localhost` network you don’t need to do anything because the default signer is already funded with ether and HRT
+  - on `goerli` you’ll need to connect a signer by supplying the private key for an account that owns goerli ether and goerli HRT
   - call `connectSigner('<funded private key>')`
 
 ```javascript
@@ -61,7 +61,7 @@ The core contracts in this repository are published in an NPM package for easy u
 
 To install the npm package, run:
  ```shell
-npm i @sarcophagus-org/sarcophagus-v2-contracts
+npm i @Heirtrust/heirtrust-v2-contracts
 ```
 
 ## Updating
@@ -80,7 +80,7 @@ Commit updated version to git
 - Update the package.json file’s version number with the abi version that will be published for the deployment
 - In your .env file, set
   - `GOERLI_PROVIDER` to a valid goerli rpc node url
-  - `SARCO_TOKEN_ADDRESS_GOERLI` to the address of the SarcoToken contract on Goerli:  `0x4633b43990b41B57b3678c6F3Ac35bA75C3D8436`
+  - `SARCO_TOKEN_ADDRESS_GOERLI` to the address of the HRTToken contract on Goerli:  `0x4633b43990b41B57b3678c6F3Ac35bA75C3D8436`
   - `GOERLI_DEPLOYER_PRIVATE_KEY` to the address of the original deployer. If this is a new deployment:
     - Update the "name" of the diamond proxy in the deploy file (`await diamond.deploy("Diamond"`).
     - note that on a new deployment, the json deployment files under deployments/goerli/ will be updated with new contract addresses
