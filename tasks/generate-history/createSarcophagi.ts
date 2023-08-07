@@ -53,10 +53,14 @@ export async function createSarcophagi(
   const recipientAddress = (await getSigners())[0].address;
 
   // Get the contracts
-  const diamondDeployment = await hre.deployments.get("HeirTrust_V2_DiamondProxy");
-  
+  const diamondDeployment = await hre.deployments.get(
+    "HeirTrust_V2_DiamondProxy"
+  );
 
-  const diamond = await ethers.getContractAt("HeirTrust_V2_DiamondProxy", diamondDeployment.address);
+  const diamond = await ethers.getContractAt(
+    "HeirTrust_V2_DiamondProxy",
+    diamondDeployment.address
+  );
   const embalmerFacet = await ethers.getContractAt(
     "EmbalmerFacet",
     diamond.address

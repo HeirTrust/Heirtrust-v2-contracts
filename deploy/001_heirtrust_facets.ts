@@ -23,15 +23,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   ) {
     const hrtToken = await hre.deployments.get("HeirTrustToken");
     hrtTokenAddress = hrtToken.address;
-    
-  } 
-  else if (["goerli", "goerli-fork"].includes(hre.hardhatArguments.network)) {
+  } else if (["goerli", "goerli-fork"].includes(hre.hardhatArguments.network)) {
     hrtTokenAddress = "0x4633b43990b41B57b3678c6F3Ac35bA75C3D8436";
-  } 
-  else if (["sepolia"].includes(hre.hardhatArguments.network)) {
+  } else if (["sepolia"].includes(hre.hardhatArguments.network)) {
     hrtTokenAddress = "0xfa1FA4d51FB2babf59e402c83327Ab5087441289";
-  } 
-  else if (
+  } else if (
     ["mainnet", "mainnet-fork"].includes(hre.hardhatArguments.network)
   ) {
     hrtTokenAddress = "0x7697b462a7c4ff5f8b55bdbc2f4076c2af9cf51a";

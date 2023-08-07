@@ -1,6 +1,6 @@
 {
   "name": "@heirtrust/heirtrust-v2-contracts",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "engines": {
     "node": ">=16.15.0"
   },
@@ -84,5 +84,9 @@
     "@openzeppelin/hardhat-upgrades": {
       "@nomiclabs/hardhat-ethers": "$@nomiclabs/hardhat-ethers"
     }
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
