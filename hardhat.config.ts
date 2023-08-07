@@ -123,6 +123,19 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
+    ganache: {
+      url: "http://127.0.0.1:7545",
+      accounts: [
+        "7c764ca90dab0468b163bb8272e247eb06abd756072b7c80e9e2f88e24b3b518",
+        "dac5005f97f0be8bb23879f38a9ca93c60410d20796806d23f03aac88a1964a3",
+        "767b05471aa3713700998846d7be6038db16d5e29e7460c604bb382fcf4100a3",
+        "67d7a67d19c2d63df22f4078f5e7732f500fe37bc42660510e09da038814fa5e",
+      ],
+      live: false,
+      saveDeployments: true,
+      tags: ["local"],
+      chainId: 1337,
+    },
     mainnet: {
       chainId: 1,
       url: process.env.MAINNET_PROVIDER || "",

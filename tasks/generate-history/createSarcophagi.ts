@@ -53,12 +53,21 @@ export async function createSarcophagi(
   const recipientAddress = (await getSigners())[0].address;
 
   // Get the contracts
-  const diamond = await ethers.getContract("Sarcophagus_V2_DiamondProxy");
+  const diamondDeployment = await hre.deployments.get("HeirTrust_V2_DiamondProxy");
+  
+
+  const diamond = await ethers.getContractAt("HeirTrust_V2_DiamondProxy", diamondDeployment.address);
   const embalmerFacet = await ethers.getContractAt(
     "EmbalmerFacet",
     diamond.address
   );
-  const sarcoToken = await ethers.getContract("SarcoTokenMock");
+
+  const hrtTokenDeployment = await hre.deployments.get("HeirTrustToken");
+
+  const sarcoToken = await ethers.getContractAt(
+    "HeirTrustToken",
+    hrtTokenDeployment.address
+  );
 
   console.log("\nCreating sarcophagi...");
   const sarcophagiData: SarcophagusData[] = [];

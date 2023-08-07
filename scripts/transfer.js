@@ -1,7 +1,7 @@
-// Transfer 10,000 sarco tokens to an address
+// Transfer 10,000 HRT tokens to an address
 // transferAddress defaults to the first unnamed hardhat local node account
 const amountToTransfer = "10000000000000000000000";
-const mockTokenAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+let mockTokenAddress = "0x548e7588C7eb521B71Ed882982094ca414885B8a";
 
 const hre = require("hardhat");
 
@@ -15,19 +15,22 @@ const allowedNetworks = ["localhost"];
     );
   }
 
-  const sarcoToken = await hre.ethers.getContractAt(
-    "SarcoTokenMock",
+  const hrtTokenDeployment = await hre.deployments.get("HeirTrustToken");
+  mockTokenAddress = hrtTokenDeployment.address;
+
+  const hrtToken = await hre.ethers.getContractAt(
+    "HeirTrustToken",
     mockTokenAddress
   );
   const unsignedAccounts = await hre.getUnnamedAccounts();
 
   const transferAddress = process.env.TRANSFER_ADDRESS || unsignedAccounts[0];
 
-  await sarcoToken.transfer(
+  await hrtToken.transfer(
     transferAddress,
     hre.ethers.BigNumber.from(amountToTransfer)
   );
 
-  const newBalance = await sarcoToken.balanceOf(transferAddress);
+  const newBalance = await hrtToken.balanceOf(transferAddress);
   console.log("account balance:", newBalance.toString());
 })();

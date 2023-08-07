@@ -7,13 +7,11 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy, diamond } = hre.deployments;
   const { deployer, signatory } = await hre.getNamedAccounts();
 
-
-  const heritageTokenMock = await deploy("Token", {
+  const heritageTokenMock = await deploy("HeirTrustToken", {
     from: deployer,
     log: true,
-    args: [ 'HeirTrust', 'HRT' ]
+    args: [],
   });
-
 };
 
-module.exports.tags = ["Token"  ];
+module.exports.tags = ["HRT"];
